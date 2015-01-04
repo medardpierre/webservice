@@ -1,0 +1,38 @@
+<div class="container main-content ng-scope">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>{{firstname}} {{lastname}}'s profil<br>
+            <hr>
+
+        </div>
+
+        <div class="col-md-12 text-center">
+
+        </div>
+        <div id="profil-info">
+            <div class="col-md-4 text-center" style="margin-top:80px;">
+                <!-- Image de l'utilisateur -->
+                <img class="userpic" src="{{user.picture}}" alt="profil pic" style="width: 300px;height: 300px;"/>
+            </div>
+            <div class="col-md-8 text-center">
+                <br>
+
+                    <label for="email" class="text-left">Email:</label>
+                    <p>{{user.email}}</p><br />
+
+                    <label for="about" class="text-left">About:</label>
+                    <p>{{user.about}}</p>
+
+
+                <div class="alert fade in" id="profil-success" style="display:none;">
+                    Profil edited successfully !
+                </div>
+                <div class="alert fade in" id="profil-error" style="display:none;">
+                    Something went wrong. Could not edit the profil.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

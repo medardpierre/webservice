@@ -28,6 +28,11 @@ gltypeApp.config(function($routeProvider) {
             .when('/profil', {
                 templateUrl : 'pages/profil.html',
                 controller  : 'profilController'
+            })
+
+            .when('/profil/:id', {
+                templateUrl : 'pages/userprofil.html',
+                controller  : 'userprofilController'
             });
 
     });
@@ -154,6 +159,36 @@ gltypeApp.controller('userController', function($scope, $http, $cookieStore)
 	
 	});
 
+gltypeApp.controller('userprofilController', function($scope, $http, $cookieStore, $routeParams) {
+    $scope.webmaster = "Gilles TUAL";
+    $scope.user = {};
+    $http({
+        url: BASE_API + "/users/" + $routeParams.id,
+        dataType: 'json',
+        method: 'GET',
+        data: {token:	$cookieStore.get("TOKEN")},
+        headers: {
+            "Content-Type": "application/json"
+        }})
+        .success(function (data, status, headers, config) {
+            $scope.firstname = data.firstname;
+            $scope.user.email = data.firstname;
+            $scope.lastname = data.lastname;
+            $scope.user.lastname = data.lastname;
+            $scope.picture = data.picture;
+            $scope.user.picture = data.picture;
+            $scope.email = data.email;
+            $scope.user.email = data.email;
+            $scope.about = data.about;
+            $scope.user.about = data.about;
+            $scope.role = (data.role == 1) ? "Consumer" : (data.role == 2) ? "Food supplier" : (data.role == 3) ? "Gastronomist" : "Admin";
+            $scope.moments = data.moments;
+        })
+        .error(function (data, status, headers, config) {
+            alert(data);
+        });
+});
+
 gltypeApp.controller('aboutController', function($scope) {
 		$scope.webmaster = "Gilles TUAL";
 		$scope.members = [{firstname:'Gilles', lastname:'TUAL', img: './img/tual_g.jpg', role: 'Project Leader / Designer', age:'22'},
@@ -166,17 +201,12 @@ gltypeApp.controller('aboutController', function($scope) {
 
 gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
 	$scope.form_search = {};
-	$scope.receipes = {};
-	$scope.products = {};
-	$scope.ingredients = {};
+	$scope.users = {};
 
 	//search
     $scope.search_data = function ($form_search) {
         $http({
-            url: BASE_API + "/search/ingredients/"
-            + $form_search.name + "/"
-            + $form_search.minCal + "/"
-            + $form_search.maxCal + "/0/10",
+            url: BASE_API + "/users/name/" + $form_search.name,
             dataType: 'json',
             method: 'GET',
             headers: {
@@ -184,44 +214,7 @@ gltypeApp.controller('searchController', function($scope, $http, $cookieStore) {
             }
         })
             .success(function (data, status, headers, config) {
-                $scope.ingredients = data;
-            })
-            .error(function (data, status, headers, config) {
-                alert("error");
-            });
-
-        $http({
-            url: BASE_API + "/search/products/"
-            + $form_search.name + "/"
-            + $form_search.minCal + "/"
-            + $form_search.maxCal + "/0/10",
-            dataType: 'json',
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .success(function (data, status, headers, config) {
-                $scope.products = data;
-            })
-            .error(function (data, status, headers, config) {
-                alert("error");
-            });
-
-
-        $http({
-            url: BASE_API + "/search/receipes/"
-            + $form_search.name + "/"
-            + $form_search.minCal + "/"
-            + $form_search.maxCal + "/0/10",
-            dataType: 'json',
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .success(function (data, status, headers, config) {
-                $scope.receipes = data;
+                $scope.users = data;
             })
             .error(function (data, status, headers, config) {
                 alert("error");

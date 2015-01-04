@@ -10,15 +10,6 @@
 					    <label for="search">Search</label>
 					    <input type="text" class="form-control" id="search" ng-model="form_search.name" placeholder="Search">
 					  </div>
-					   <div class="form-group">
-					    <label for="search">Minimum Calories</label>
-					    <input type="text" class="form-control" id="minCal" ng-model="form_search.minCal" placeholder="0">
-					  </div>
-					  <div class="form-group">
-					    <label for="search">Maximum Calories</label>
-					    <input type="text" class="form-control" id="maxCal" ng-model="form_search.maxCal" placeholder="0">
-					  </div>
-
 					  
 					  <button type="submit" class="btn btn-default">Search</button>
 				</form>
@@ -26,52 +17,17 @@
 			</div>
 
 			<div class="col-sm-12">
-				<h2>Ingredients</h2>
 			</div>
-			<div class="col-sm-6 col-md-4" ng-repeat-start="i in ingredients">
+			<div class="col-sm-6 col-md-4" ng-repeat-start="i in users">
             <div class="thumbnail">
-              <img src="{{i.picture}}" alt="{{i.name}}\'s picture" width="300px" height="300px">
+              <img src="{{i.picture}}" alt="{{i.firstname}}{{i.lastname}}\'s picture" width="300px" height="300px">
               <div class="caption">
-                <h3>{{i.name}}</h3>
-                <p>Calories : {{i.values}}</p>
-                <p>{{i.description}}</p>
-                <p><a href="#ingredient/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
+                <h3>{{i.firstname}} {{i.lastname}}</h3>
+                <p>{{i.about}}</p>
+                <p><a href="#profil/{{i._id}}" class="btn btn-primary" role="button">See profil</a>
               </div>
             </div>
           </div>
           <div  ng-repeat-end=""></div>
-
-          <div class="col-sm-12">
-				<h2>Products</h2>
-			</div>
-			<div class="col-sm-6 col-md-4" ng-repeat-start="p in products">
-            <div class="thumbnail">
-              <img src="{{p.picture}}" alt="{{p.name}}\'s picture" width="300px" height="300px">
-              <div class="caption">
-                <h3>{{p.name}}<small> {{p.brand}}</small></h3>
-                <p>Calories : {{p.values}}</p>
-                <p>{{p.description}}</p>
-                <p><a href="#product/{{s._id}}" class="btn btn-primary" role="button">See item page</a>
-              </div>
-            </div>
-          </div>
-          <div  ng-repeat-end=""></div>
-
-			<div class="col-sm-12">
-				<h2>Receipes</h2>
-			</div>
-			<div class="col-sm-6 col-md-4" ng-repeat-start="r in receipes">
-            <div class="thumbnail">
-              <img src="{{r.picture}}" alt="{{r.name}}\'s picture" width="300px" height="300px">
-              <div class="caption">
-                <h3>{{r.name}}</h3>
-                <p>Calories : {{r.values}}</p>
-                <p>{{r.description}}</p>
-                <p><a href="#receipe/{{r._id}}" class="btn btn-primary" role="button">See item page</a>
-              </div>
-            </div>
-          </div>
-          <div  ng-repeat-end=""></div>
-
 		</div>
 </div>
