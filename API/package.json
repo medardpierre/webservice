@@ -1,0 +1,15 @@
+{
+    "name": "GLTYPE-API",
+    "description": "GLTYPE Api",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "*",
+        "cors": "*",
+        "mongoose": "*",
+        "mongoose-unique-validator":"*",
+        "body-parser": "*",
+        "connect-mongo" : "*",
+        "MD5" : "*"
+    }
+}
