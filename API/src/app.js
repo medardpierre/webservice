@@ -20,7 +20,7 @@ User = require('./controllers/user.js');
 app.get('/', function(req, res) { res.end("Welcome to the API"); });
 
 app.post('/users', User.createUser);
-//app.get('/users', User.getAllUsers);
+app.get('/users', User.getAllUsers);
 app.get('/users/token/:token', User.getActualUser);
 app.get('/users/:id', User.getUserById);
 app.get('/users/mail/:email', User.getUserByEmail);
